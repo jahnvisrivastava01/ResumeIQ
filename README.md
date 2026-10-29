@@ -1,137 +1,94 @@
-# 📝 Resume Scanner AI
+# ResumeIQ — AI-Powered Resume Analyzer
 
-## 🌐 Live Demo
-Deployed App: https://resume-scanner-ai-1.onrender.com/
+ResumeIQ is an AI-powered resume analysis web application that helps candidates evaluate their resumes against job requirements, understand skill gaps, and identify areas for improvement.
 
----
+## Features
 
-## 📌 Overview
+- **Resume Upload:** Upload resumes in PDF or DOCX format.
+- **Resume Validation:** Check whether uploaded content resembles a resume.
+- **Job Role Analysis:** Analyze resumes against supported job roles.
+- **Job Description Matching:** Compare a resume with a custom job description.
+- **Match Score:** View a relevance score based on resume and job requirements.
+- **Skill Gap Analysis:** Identify skills that may be missing from the resume.
+- **Improvement Suggestions:** Get suggestions to improve resume alignment.
+- **Responsive Interface:** Use the application on desktop and mobile screens.
 
-Resume Scanner AI is a full-stack web application that analyzes uploaded resumes and provides intelligent insights based on selected career roles.
+## Tech Stack
 
-It helps users:
-- Evaluate their resume
-- Identify missing skills
-- Improve job readiness for internships and placements
-
-This project combines:
-- 🤖 ML-based role prediction  
-- ⚙️ Rule-based skill matching and scoring  
-
----
-
-## 🚀 Features
-
-### 📂 Resume Upload
-- Supports PDF and DOCX files
-- Blocks unsupported file types
-
-### 🎯 Role-Based Analysis
-- Select a target role
-- Compares resume with required skills
-- Calculates match score
-- Identifies missing skills
-- Provides improvement suggestions
-
-### 📊 Smart Output
-- Match score with label (Strong / Moderate / Needs Improvement)
-- AI predicted role
-- Found & missing skills
-- Clear recommendations
-
-### 🎨 Web Interface
-- Clean and responsive UI
-- Fast processing
-- Smooth user experience
-
----
-
-## 🧠 ML Integration
-
-This project uses Machine Learning to enhance resume analysis.
-
-- Uses **TF-IDF Vectorization** for text feature extraction  
-- Uses **Multinomial Naive Bayes** for classification  
-- Predicts the most suitable job role from resume text  
-
-### Example
-```
-
-Resume → "Python, SQL, Data Analysis"
-→ Predicted Role: Data Analyst
-
-```
-
-The trained model is stored as `model.pkl`.
-
----
-
-## 🧰 Tech Stack
-
-### Frontend
+**Frontend**
 - React
-- Tailwind CSS
 - Vite
+- JavaScript
+- CSS
 - Axios
 
-### Backend
+**Backend**
 - Python
 - FastAPI
+- Uvicorn
+
+**Resume Processing and Machine Learning**
 - PyPDF2
 - python-docx
-- scikit-learn
+- Scikit-learn
+- TF-IDF and Multinomial Naive Bayes
 
----
+## Project Structure
 
-## 📂 Project Structure
-
-```
-
-resume-scanner-ai/
-│
-├── frontend/
-│   ├── src/
-│   └── package.json
-│
+```text
+ResumeIQ/
 ├── backend/
 │   ├── main.py
-│   ├── train_model.py
 │   ├── roles.json
-│   ├── model.pkl
+│   ├── train_model.py
+│   ├── requirements.txt
+│   ├── .env.example
+│   ├── tests/
 │   └── utils/
-│       ├── parser.py
-│       └── matcher.py
-│
-└── README.md
+└── frontend/
+    ├── public/
+    ├── src/
+    ├── package.json
+    └── .env.example
+```
 
-````
+## Run Locally
 
----
-
-## ▶️ Run Locally
-
-### 1️⃣ Clone Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/jahnvisrivastava01/resume_scanner_ai.git
-cd resume-scanner-ai
-````
+cd resume_scanner_ai
+```
 
----
-
-### 2️⃣ Backend Setup
+### 2. Set up the backend
 
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate   # Windows
-pip install fastapi uvicorn python-multipart PyPDF2 python-docx scikit-learn
+```
+
+Activate the virtual environment on Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the backend:
+
+```bash
 uvicorn main:app --reload
 ```
 
----
+### 3. Set up the frontend
 
-### 3️⃣ Frontend Setup
+Open a separate terminal:
 
 ```bash
 cd frontend
@@ -139,40 +96,25 @@ npm install
 npm run dev
 ```
 
----
+Open the local URL displayed by Vite in your terminal.
 
-### 4️⃣ Generate ML Model
+## API Endpoints
 
-```bash
-cd backend
-python train_model.py
-```
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/health` | Check backend health |
+| GET | `/api/roles` | Retrieve supported job roles |
+| POST | `/api/analyze` | Analyze an uploaded resume |
 
----
+## Future Improvements
 
-## 📌 Use Cases
+- More advanced semantic matching.
+- Additional resume formats and validation.
+- Expanded job-role coverage.
+- More detailed, downloadable analysis reports.
 
-* Resume evaluation for students
-* Internship & placement preparation
-* Skill gap analysis
-* Resume improvement tool
-
----
-
-## 💡 Future Improvements
-
-* AI-powered job description matching
-* ATS score calculation
-* Resume templates
-* User authentication
-* Saved history
-* Downloadable PDF reports
-
----
-
-## 👩‍💻 Author
+## Author
 
 **Jahnvi Srivastava**
-
 
 
