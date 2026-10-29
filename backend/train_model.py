@@ -1,65 +1,30 @@
-import pandas as pd
+"""Train a small demo role classifier. The matcher has a keyword fallback if this model is absent."""
 import pickle
+from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import Pipeline
 
-# ---------------- DATASET ----------------
-data = pd.DataFrame({
-    "resume_text": [
-        # Data Analyst
-        "python sql pandas excel data analysis power bi tableau",
-        "data cleaning visualization statistics sql python",
-
-        # Frontend
-        "html css javascript react tailwind frontend ui",
-        "react js responsive design api integration html css",
-
-        # Backend
-        "node js express mongodb api backend development",
-        "java spring boot rest api sql backend",
-
-        # Full Stack
-        "react node mongodb full stack development api",
-        "html css javascript node express full stack",
-
-        # ML Engineer
-        "machine learning python tensorflow numpy pandas",
-        "deep learning nlp python scikit learn",
-
-        # Tester
-        "manual testing selenium test cases bug tracking jira",
-        "automation testing selenium webdriver qa testing",
-
-        # DevOps
-        "docker kubernetes aws linux ci cd jenkins",
-        "devops pipelines cloud deployment docker kubernetes"
-    ],
-    "role": [
-        "data analyst","data analyst",
-        "frontend developer","frontend developer",
-        "backend developer","backend developer",
-        "full stack developer","full stack developer",
-        "machine learning engineer","machine learning engineer",
-        "software tester","software tester",
-        "devops engineer","devops engineer"
-    ]
-})
-
-X = data["resume_text"]
-y = data["role"]
-
-# ---------------- MODEL ----------------
-model = Pipeline([
-    ("tfidf", TfidfVectorizer()),
-    ("clf", MultinomialNB())
-])
-
-# Train model
+BASE_DIR = Path(__file__).resolve().parent
+examples = [
+    ("html css javascript react tailwind responsive frontend ui", "frontend developer"),
+    ("react js responsive design api integration html css", "frontend developer"),
+    ("node express mongodb api backend python fastapi sql", "backend developer"),
+    ("java spring boot rest api sql backend development", "backend developer"),
+    ("react node mongodb full stack development api html css", "full stack developer"),
+    ("html css javascript node express full stack", "full stack developer"),
+    ("machine learning python tensorflow numpy pandas scikit learn", "machine learning engineer"),
+    ("deep learning nlp python scikit learn model training", "machine learning engineer"),
+    ("python sql pandas excel data analysis power bi tableau", "data analyst"),
+    ("data cleaning visualization statistics sql python", "data analyst"),
+    ("manual testing selenium test cases bug tracking jira", "software tester"),
+    ("automation testing selenium webdriver qa testing", "software tester"),
+    ("docker kubernetes aws linux ci cd jenkins", "devops engineer"),
+    ("devops pipelines cloud deployment docker kubernetes", "devops engineer"),
+]
+X, y = zip(*examples)
+model = Pipeline([("tfidf", TfidfVectorizer()), ("classifier", MultinomialNB())])
 model.fit(X, y)
-
-# ---------------- SAVE MODEL ----------------
-with open("model.pkl", "wb") as f:
+with (BASE_DIR / "model.pkl").open("wb") as f:
     pickle.dump(model, f)
-
-print("✅ model.pkl successfully created!")
+print(f"Saved demo role classifier to {BASE_DIR / 'model.pkl'}")
