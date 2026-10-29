@@ -1,19 +1,21 @@
 # ResumeIQ — AI-Powered Resume Analyzer
 
-ResumeIQ is an AI-powered resume analysis web application that helps candidates evaluate their resumes against job requirements, understand skill gaps, and identify areas for improvement.
+ResumeIQ is an AI-powered resume analysis web application that helps candidates evaluate their resumes against job requirements, identify skill gaps, and discover areas for improvement.
 
-## Features
+🚀 **Live Demo:** [ResumeIQ](https://resume-scanner-ai-363o.onrender.com/)
+
+## ✨ Features
 
 - **Resume Upload:** Upload resumes in PDF or DOCX format.
-- **Resume Validation:** Check whether uploaded content resembles a resume.
+- **Resume Validation:** Validate uploaded files and check for readable resume content.
 - **Job Role Analysis:** Analyze resumes against supported job roles.
-- **Job Description Matching:** Compare a resume with a custom job description.
-- **Match Score:** View a relevance score based on resume and job requirements.
-- **Skill Gap Analysis:** Identify skills that may be missing from the resume.
-- **Improvement Suggestions:** Get suggestions to improve resume alignment.
-- **Responsive Interface:** Use the application on desktop and mobile screens.
+- **Custom Job Description Matching:** Compare your resume with a specific job description.
+- **Resume Match Score:** Evaluate resume relevance against target job requirements.
+- **Skill Gap Analysis:** Identify skills that may be missing from your resume.
+- **Improvement Suggestions:** Get recommendations to improve your resume's alignment with a target role.
+- **Responsive UI:** Access the application through desktop and mobile browsers.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 **Frontend**
 - React
@@ -27,13 +29,14 @@ ResumeIQ is an AI-powered resume analysis web application that helps candidates 
 - FastAPI
 - Uvicorn
 
-**Resume Processing and Machine Learning**
-- PyPDF2
-- python-docx
+**Machine Learning and Document Processing**
 - Scikit-learn
-- TF-IDF and Multinomial Naive Bayes
+- TF-IDF Vectorization
+- Multinomial Naive Bayes
+- PyPDF / PDF text extraction
+- python-docx
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 ResumeIQ/
@@ -44,15 +47,25 @@ ResumeIQ/
 │   ├── requirements.txt
 │   ├── .env.example
 │   ├── tests/
+│   │   └── test_matcher.py
 │   └── utils/
+│       ├── matcher.py
+│       └── parser.py
 └── frontend/
     ├── public/
     ├── src/
     ├── package.json
+    ├── package-lock.json
     └── .env.example
 ```
 
-## Run Locally
+## 💻 Run Locally
+
+### Prerequisites
+
+- Python installed
+- Node.js and npm installed
+- Git installed
 
 ### 1. Clone the repository
 
@@ -83,8 +96,12 @@ pip install -r requirements.txt
 Start the backend:
 
 ```bash
-uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
+
+Backend API documentation:
+
+`http://127.0.0.1:8000/docs`
 
 ### 3. Set up the frontend
 
@@ -96,25 +113,30 @@ npm install
 npm run dev
 ```
 
-Open the local URL displayed by Vite in your terminal.
+Open the local URL provided by Vite in your terminal.
 
-## API Endpoints
+## 🔌 API Endpoints
 
-| Method | Endpoint | Purpose |
+| Method | Endpoint | Description |
 |---|---|---|
 | GET | `/api/health` | Check backend health |
 | GET | `/api/roles` | Retrieve supported job roles |
 | POST | `/api/analyze` | Analyze an uploaded resume |
 
-## Future Improvements
+Interactive API documentation is available at `/docs` when the backend is running.
 
-- More advanced semantic matching.
-- Additional resume formats and validation.
-- Expanded job-role coverage.
-- More detailed, downloadable analysis reports.
+## 🔮 Future Improvements
 
-## Author
+- More advanced semantic resume matching.
+- Expanded job-role and industry coverage.
+- More detailed downloadable analysis reports.
+- Enhanced resume recommendations.
+- Further improvements to accessibility and user experience.
+
+## 👩‍💻 Author
 
 **Jahnvi Srivastava**
 
+---
 
+If you find this project useful, consider giving the repository a ⭐.
